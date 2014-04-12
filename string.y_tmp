@@ -1,0 +1,78 @@
+%{
+#include <string.h>
+#include "lex.h"
+#define YYDEBUG 1
+#define YY_ERROR_VERBOSE
+void Error(char *format,...);
+void yyerror(char *s);
+%}
+
+%expect 1
+%union {
+    char str[256];
+}
+
+%token ERROR_TOKEN IF ELSE PRINT INPUT ASSIGN EQUAL
+%token CONCAT END_STMT OPEN_PAR CLOSE_PAR
+%token BEGIN_CS END_CS
+%token <str> ID STRING
+
+%%
+program : 
+	statement_list;
+
+statement_list : statement_list statement
+	| ;
+statement : END_STMT { puts("empty statement");} 
+	| expression END_STMT { puts("expression statement");} 
+	| PRINT expression END_STMT { puts("print expression statement");} 
+	| INPUT expression END_STMT { puts("input expression statement");} 
+	| if_statement { puts("if statement");} 
+	| compound_statement { puts("compound statement");} 
+	| error END_STMT { puts("error statement");} 
+;
+
+if_statement : 
+	IF OPEN_PAR expression CLOSE_PAR statement optionnal_else_statement
+	;
+
+optionnal_else_statement : 
+	ELSE statement
+	| 
+	;
+compound_statement :
+	BEGIN_CS statement_list END_CS
+	;
+
+expression : 
+	equal_expression
+	| OPEN_PAR expression CLOSE_PAR 
+	;
+
+equal_expression : 
+	expression EQUAL assign_expression
+	| assign_expression 
+	;
+
+assign_expression : 
+	identifier ASSIGN assign_expression
+	| concat_expression
+	;
+concat_expression : 
+	concat_expression CONCAT simple_expression
+	| simple_expression
+	;
+
+simple_expression : 
+	identifier 
+	| string
+	;
+
+identifier
+	: ID {}	
+	;
+string 
+	: STRING {}
+	;
+
+%%

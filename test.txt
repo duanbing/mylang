@@ -1,0 +1,9 @@
+
+print "Please enter your name > ";
+input name;
+if (name == "Jan") { // string comparison
+name = "my creator"; // string assignment
+happy = "yes";
+}
+print "Thank you, " + name + "!\n" + // string concatenation
+"You've just made a simple program very happy!";
