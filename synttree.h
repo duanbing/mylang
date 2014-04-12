@@ -18,12 +18,20 @@ typedef enum {
     ASSIGN_EXPR,
     CONCAT_EXPR,
     IDENT_EXPR,
-    STR_EXPR
+    STR_EXPR,
+    COERCE_TO_STR
 }NodeType;
+
+typedef enum DataType  {
+   T_VOID,
+   T_STRING,
+   T_BOOL
+}DataType;
 
 
 typedef struct TreeNode {
     NodeType type;
+    DataType rettype;
     struct SymDesc *symbol;
     struct TreeNode *child[3];
 }TreeNode;
@@ -31,9 +39,11 @@ typedef struct TreeNode {
 struct TreeNode* newNode(NodeType type,struct TreeNode *,
 	struct TreeNode *,
 	struct TreeNode *);
-
+void Check(struct TreeNode* );
 void SyntShow(struct TreeNode*, int );
 
+
+int CoerceToString (struct TreeNode *tree,int childno);
 
 
 #endif

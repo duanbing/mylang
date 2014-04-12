@@ -14,7 +14,7 @@ void EatComment();
 
 LETTER [a-zA-Z]
 DIGIT [0-9]
-INDNT {LETTER}({LETTER}|{DIGIT})*
+IDENT {LETTER}({LETTER}|{DIGIT})*
 STR \"[^\"]*\"
 WSPACE [ \t]+
 
@@ -32,7 +32,7 @@ WSPACE [ \t]+
 "{"      {return BEGIN_CS;}
 "}"      {return END_CS; }
 
-{INDNT} {Identifier(); return ID;}
+{IDENT} {Identifier(); return ID;}
 
 {STR} {StringConstant(); return STRING;}
 
