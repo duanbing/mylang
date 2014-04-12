@@ -246,7 +246,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state. */
 #define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   50
+#define YYLAST   58
 
 /* YYNTOKENS -- Number of terminals. */
 #define YYNTOKENS  18
@@ -303,7 +303,7 @@ static const unsigned char yytranslate[] =
 static const unsigned char yyprhs[] =
 {
        0,     0,     3,     5,     8,     9,    11,    14,    18,    22,
-      24,    26,    29,    36,    39,    40,    42,    46,    50,    52,
+      24,    26,    29,    36,    39,    40,    44,    46,    50,    52,
       56,    58,    62,    64,    66,    68,    72,    74
 };
 
@@ -311,12 +311,12 @@ static const unsigned char yyprhs[] =
 static const yysigned_char yyrhs[] =
 {
       19,     0,    -1,    20,    -1,    20,    21,    -1,    -1,    11,
-      -1,    24,    11,    -1,     6,    24,    11,    -1,     7,    30,
-      11,    -1,    22,    -1,    25,    -1,     1,    11,    -1,     4,
-      12,    24,    13,    21,    23,    -1,     5,    21,    -1,    -1,
-      26,    -1,    14,    21,    15,    -1,    24,     9,    27,    -1,
+      -1,    25,    11,    -1,     6,    25,    11,    -1,     7,    30,
+      11,    -1,    22,    -1,    24,    -1,     1,    11,    -1,     4,
+      12,    25,    13,    21,    23,    -1,     5,    21,    -1,    -1,
+      14,    20,    15,    -1,    26,    -1,    25,     9,    27,    -1,
       27,    -1,    30,     8,    27,    -1,    28,    -1,    28,    10,
-      29,    -1,    29,    -1,    30,    -1,    31,    -1,    12,    24,
+      29,    -1,    29,    -1,    30,    -1,    31,    -1,    12,    25,
       13,    -1,    16,    -1,    17,    -1
 };
 
@@ -324,8 +324,8 @@ static const yysigned_char yyrhs[] =
 static const unsigned char yyrline[] =
 {
        0,    40,    40,    44,    45,    48,    49,    50,    51,    52,
-      53,    54,    58,    66,    67,    71,    75,    79,    80,    84,
-      85,    89,    90,    94,    95,    96,    99,   110
+      53,    54,    59,    66,    67,    71,    75,    80,    81,    85,
+      86,    90,    91,    95,    96,    97,   100,   111
 };
 #endif
 
@@ -338,7 +338,7 @@ static const char *const yytname[] =
   "INPUT", "ASSIGN", "EQUAL", "CONCAT", "END_STMT", "OPEN_PAR",
   "CLOSE_PAR", "BEGIN_CS", "END_CS", "ID", "STRING", "$accept", "program",
   "statement_list", "statement", "if_statement", "optional_else_statement",
-  "expression", "compound_statement", "equal_expression",
+  "compound_statement", "expression", "equal_expression",
   "assign_expression", "concat_expression", "simple_expression",
   "identifier", "string", 0
 };
@@ -366,7 +366,7 @@ static const unsigned char yyr1[] =
 static const unsigned char yyr2[] =
 {
        0,     2,     1,     2,     0,     1,     2,     3,     3,     1,
-       1,     2,     6,     2,     0,     1,     3,     3,     1,     3,
+       1,     2,     6,     2,     0,     3,     1,     3,     1,     3,
        1,     3,     1,     1,     1,     3,     1,     1
 };
 
@@ -376,9 +376,9 @@ static const unsigned char yyr2[] =
 static const unsigned char yydefact[] =
 {
        4,     0,     0,     1,     0,     0,     0,     0,     5,     0,
-       0,    26,    27,     3,     9,     0,    10,    15,    18,    20,
+       4,    26,    27,     3,     9,    10,     0,    16,    18,    20,
       22,    23,    24,    11,     0,     0,     0,     0,     0,     0,
-       6,     0,     0,     0,     7,     8,    25,    16,    17,    21,
+       6,     0,     0,     0,     7,     8,    25,    15,    17,    21,
       23,    19,     0,    14,     0,    12,    13
 };
 
@@ -391,21 +391,21 @@ static const yysigned_char yydefgoto[] =
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -11
+#define YYPACT_NINF -9
 static const yysigned_char yypact[] =
 {
-     -11,     3,     7,   -11,    -7,    26,     0,    31,   -11,     0,
-      29,   -11,   -11,   -11,   -11,    18,   -11,   -11,   -11,     5,
-     -11,     1,   -11,   -11,     0,    28,    33,    -3,    27,     0,
-     -11,     0,     0,    13,   -11,   -11,   -11,   -11,   -11,   -11,
-     -11,   -11,    29,    43,    29,   -11,   -11
+      -9,     2,     6,    -9,    -8,     9,    -1,    -2,    -9,    -1,
+      -9,    -9,    -9,    -9,    -9,    -9,    35,    -9,    -9,    16,
+      -9,     0,    -9,    -9,    -1,    40,    21,    -4,    24,    -1,
+      -9,    -1,    -1,    20,    -9,    -9,    -9,    -9,    -9,    -9,
+      -9,    -9,    41,    22,    41,    -9,    -9
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yysigned_char yypgoto[] =
 {
-     -11,   -11,   -11,   -10,   -11,   -11,    -4,   -11,   -11,    -1,
-     -11,    19,    -6,   -11
+      -9,    -9,    33,    12,    -9,    -9,    -9,    -5,    -9,     5,
+      -9,    19,    -7,    -9
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -415,22 +415,22 @@ static const yysigned_char yypgoto[] =
 #define YYTABLE_NINF -3
 static const yysigned_char yytable[] =
 {
-      28,    26,    25,     3,    23,    27,    29,    -2,     4,    32,
-      36,     5,     9,     6,     7,    31,    11,    12,     8,     9,
-      33,    10,    29,    11,    12,    40,    42,    29,    38,    30,
-       4,    41,    43,     5,    46,     6,     7,    29,    24,    34,
-       8,     9,    37,    10,    35,    11,    12,    11,    44,     0,
-      39
+      26,    25,     3,    23,    27,    29,    -2,     4,    32,    36,
+       5,     9,     6,     7,    11,    11,    12,     8,     9,    33,
+      10,    24,    11,    12,    40,     4,    31,    44,     5,    29,
+       6,     7,    35,    42,    38,     8,     9,    41,    10,    37,
+      11,    12,     4,    28,    29,     5,    30,     6,     7,    29,
+      39,    34,     8,     9,    43,    10,    46,    11,    12
 };
 
-static const yysigned_char yycheck[] =
+static const unsigned char yycheck[] =
 {
-      10,     7,     6,     0,    11,     9,     9,     0,     1,     8,
-      13,     4,    12,     6,     7,    10,    16,    17,    11,    12,
-      24,    14,     9,    16,    17,    31,    13,     9,    29,    11,
-       1,    32,    42,     4,    44,     6,     7,     9,    12,    11,
-      11,    12,    15,    14,    11,    16,    17,    16,     5,    -1,
-      31
+       7,     6,     0,    11,     9,     9,     0,     1,     8,    13,
+       4,    12,     6,     7,    16,    16,    17,    11,    12,    24,
+      14,    12,    16,    17,    31,     1,    10,     5,     4,     9,
+       6,     7,    11,    13,    29,    11,    12,    32,    14,    15,
+      16,    17,     1,    10,     9,     4,    11,     6,     7,     9,
+      31,    11,    11,    12,    42,    14,    44,    16,    17
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -439,8 +439,8 @@ static const unsigned char yystos[] =
 {
        0,    19,    20,     0,     1,     4,     6,     7,    11,    12,
       14,    16,    17,    21,    22,    24,    25,    26,    27,    28,
-      29,    30,    31,    11,    12,    24,    30,    24,    21,     9,
-      11,    10,     8,    24,    11,    11,    13,    15,    27,    29,
+      29,    30,    31,    11,    12,    25,    30,    25,    20,     9,
+      11,    10,     8,    25,    11,    11,    13,    15,    27,    29,
       30,    27,    13,    21,     5,    23,    21
 };
 
@@ -1102,10 +1102,9 @@ yyreduce:
     break;
 
   case 12:
-#line 59 "string.y"
+#line 60 "string.y"
     {
-	    if (yyvsp[0].tnode !=  NULL) yyval.tnode = newNode (IFTHENELSE_STMT,yyvsp[-3].tnode,yyvsp[-1].tnode,yyvsp[0].tnode);
-	    else yyval.tnode = newNode(IFTHEN_STMT,yyvsp[-3].tnode,yyvsp[-1].tnode,NULL);
+	    yyval.tnode = newNode (yyvsp[0].tnode? IFTHENELSE_STMT : IFTHEN_STMT,yyvsp[-3].tnode,yyvsp[-1].tnode,yyvsp[0].tnode);
 	;}
     break;
 
@@ -1121,61 +1120,61 @@ yyreduce:
 
   case 15:
 #line 71 "string.y"
-    { yyval.tnode=yyvsp[0].tnode;;}
+    {yyval.tnode=yyvsp[-1].tnode;;}
     break;
 
   case 16:
 #line 75 "string.y"
-    {yyval.tnode=yyvsp[-1].tnode;;}
+    { yyval.tnode=yyvsp[0].tnode;;}
     break;
 
   case 17:
-#line 79 "string.y"
+#line 80 "string.y"
     { yyval.tnode = newNode(EQUAL_EXPR,yyvsp[-2].tnode,yyvsp[0].tnode,NULL);;}
     break;
 
   case 18:
-#line 80 "string.y"
-    {yyval.tnode=yyvsp[0].tnode;;}
+#line 81 "string.y"
+    { yyval.tnode=yyvsp[0].tnode;;}
     break;
 
   case 19:
-#line 84 "string.y"
+#line 85 "string.y"
     {yyval.tnode = newNode(ASSIGN_EXPR,yyvsp[0].tnode,NULL,NULL); yyval.tnode->symbol = yyvsp[-2].symbol;;}
     break;
 
   case 20:
-#line 85 "string.y"
+#line 86 "string.y"
     {yyval.tnode=yyvsp[0].tnode;;}
     break;
 
   case 21:
-#line 89 "string.y"
+#line 90 "string.y"
     { yyval.tnode=newNode(CONCAT_EXPR,yyvsp[-2].tnode,yyvsp[0].tnode,NULL); ;}
     break;
 
   case 22:
-#line 90 "string.y"
+#line 91 "string.y"
     { yyval.tnode=yyvsp[0].tnode; ;}
     break;
 
   case 23:
-#line 94 "string.y"
+#line 95 "string.y"
     {yyval.tnode=newNode(IDENT_EXPR,NULL,NULL,NULL); yyval.tnode->symbol=yyvsp[0].symbol;;}
     break;
 
   case 24:
-#line 95 "string.y"
+#line 96 "string.y"
     {yyval.tnode=newNode(STR_EXPR,NULL,NULL,NULL); yyval.tnode->symbol=yyvsp[0].symbol;;}
     break;
 
   case 25:
-#line 96 "string.y"
+#line 97 "string.y"
     {yyval.tnode=yyvsp[-1].tnode;;}
     break;
 
   case 26:
-#line 100 "string.y"
+#line 101 "string.y"
     {
 	    yyval.symbol = Find(start,yyvsp[0].str);
 	    if (yyval.symbol ==NULL) {
@@ -1186,7 +1185,7 @@ yyreduce:
     break;
 
   case 27:
-#line 111 "string.y"
+#line 112 "string.y"
     {
 	    yyval.symbol = newSymDesc(MakeName(),STR_CONST,yyvsp[0].str,lineno);	
 	    Add(start,yyval.symbol);
@@ -1197,7 +1196,7 @@ yyreduce:
     }
 
 /* Line 1000 of yacc.c.  */
-#line 1201 "string.tab.c"
+#line 1200 "string.tab.c"
 
   yyvsp -= yylen;
   yyssp -= yylen;
@@ -1422,7 +1421,7 @@ yyreturn:
 }
 
 
-#line 116 "string.y"
+#line 117 "string.y"
 
 
 char *MakeName() {

@@ -52,13 +52,13 @@ statement :
 	| if_statement { $$=$1;}
 	| compound_statement  { $$ = $1; }
 	| error END_STMT { $$=newNode(ERROR_STMT,NULL,NULL,NULL);}
-    ;
+	;
+
 
 if_statement :
 	IF OPEN_PAR expression CLOSE_PAR statement optional_else_statement 
 	{
-	    if ($6 !=  NULL) $$ = newNode (IFTHENELSE_STMT,$3,$5,$6);
-	    else $$ = newNode(IFTHEN_STMT,$3,$5,NULL);
+	    $$ = newNode ($6? IFTHENELSE_STMT : IFTHEN_STMT,$3,$5,$6);
 	}
 	;
 
@@ -67,17 +67,18 @@ optional_else_statement :
 	|   {$$=NULL;}
 	;
 
+compound_statement : 
+	BEGIN_CS statement_list END_CS {$$=$2;}
+	;
+
 expression :
 	 equal_expression { $$=$1;}
 	;
 
-compound_statement : 
-	BEGIN_CS statement END_CS {$$=$2;}
-	;
 
 equal_expression : 
 	expression EQUAL assign_expression { $$ = newNode(EQUAL_EXPR,$1,$3,NULL);}
-	|assign_expression {$$=$1;}
+	| assign_expression { $$=$1;}
 	;
 
 assign_expression :
