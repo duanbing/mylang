@@ -28,7 +28,8 @@ name : [b] []
 10: OP_PUSH b 
 11: OP_DISCARD 
 12: JUMPTARGET 8
-<pre>
+
+</pre>
 
 ## 虚拟机
 
