@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "synttree.h"
 #include "symtab.h"
 
@@ -17,7 +18,8 @@ char *name[]={
    "assign",
    "concatenate",
    "identifier",
-   "string constant"
+   "string constant",
+   "coercion to string"
 };
 
 int child[] = {

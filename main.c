@@ -2,6 +2,7 @@
 #include "lex.h"
 #include "symtab.h"
 #include "synttree.h"
+#include "intcode.h"
 
 
 int errors = 0;
@@ -17,6 +18,8 @@ int yywrap() {
 extern struct TreeNode* tree;
 extern struct SymDesc *start;
 
+struct IntInstr *intcode;
+
 main(int argc,char*argv[]){
     yyin = NULL;
     if(argc == 2) {
@@ -28,8 +31,11 @@ main(int argc,char*argv[]){
     yyparse();
     printf("%d error(s) found\n",errors);
 
-
-    SymbShow(start);
-    SyntShow(tree,0);
+	
+   // SymbShow(start);
+   // SyntShow(tree,0);
+    intcode = GenIntCode(tree);
+    Number(intcode,1);
+    IntShow(intcode);
     return errors? 1:0;
 }

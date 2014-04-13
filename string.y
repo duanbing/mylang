@@ -1,5 +1,6 @@
 %{
 #include <string.h>
+#include <stdlib.h>
 #include "lex.h"
 #include "symtab.h"
 #include "synttree.h"

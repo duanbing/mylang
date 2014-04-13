@@ -1,6 +1,6 @@
 target=lang
 CC=gcc
-obj=main.o lex.yy.o string.tab.o  synttree.o symtab.o
+obj=main.o lex.yy.o string.tab.o  synttree.o symtab.o intcode.o
 $(target) : $(obj) 
 	$(CC) -o $(target) $(obj) 
 
@@ -10,6 +10,8 @@ symtab.o : symtab.c symtab.h
 	$(CC) -c symtab.c
 synttree.o : synttree.c synttree.h
 	$(CC) -c synttree.c
+intcode.o : intcode.c intcode.h synttree.h symtab.h
+	$(CC) -c intcode.c
 main.o : main.c lex.h string.tab.h lexsymb.h 
 	$(CC) -c  main.c
 lex.yy.c : string.l
