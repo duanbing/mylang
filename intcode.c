@@ -15,7 +15,7 @@ struct IntInstr* newIntInstr(Opcode opcode,SymDesc *str,struct IntInstr* target)
 
 void Number(struct IntInstr* num,int n) {
    while(num) {
-	num->n = n; num = num->next;
+	num->n = n++; num = num->next;
    }
 }
 
