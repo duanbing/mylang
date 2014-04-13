@@ -37,5 +37,8 @@ main(int argc,char*argv[]){
     intcode = GenIntCode(tree);
     Number(intcode,1);
     IntShow(intcode);
+
+    freeSyntTree(tree);
+    freeIntCode(intcode);
     return errors? 1:0;
 }

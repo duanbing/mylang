@@ -30,4 +30,6 @@ struct IntInstr *GenIntCode(struct TreeNode* tree);
 
 void Number(struct IntInstr *num,int);
 void IntShow(struct IntInstr *);
+
+void freeIntCode(struct IntInstr*);
 #endif 

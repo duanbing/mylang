@@ -111,3 +111,12 @@ struct TreeNode* newNode(NodeType type,
     Check(node);
     return node;
 }
+
+void freeSyntTree(struct TreeNode* tree) {
+    int i=0;
+    if (!tree) return;
+    for(i=0;i<3;++i) {
+	if (tree->child[i]) freeSyntTree(tree->child[i]);
+    }
+    free(tree);
+}

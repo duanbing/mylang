@@ -45,6 +45,8 @@ void SyntShow(struct TreeNode*, int );
 
 int CoerceToString (struct TreeNode *tree,int childno);
 
+void freeSyntTree(struct TreeNode*);
+
 
 #endif
 

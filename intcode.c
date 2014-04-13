@@ -19,6 +19,15 @@ void Number(struct IntInstr* num,int n) {
    }
 }
 
+void freeIntCode(struct IntInstr* l) {
+    struct IntInstr* t = l;
+    while(l->next) {
+       t = l; 
+       l = l->next;
+       free(t);	
+    }
+} 
+
 
 // Names of the opcodes
 char *op_name[] = {
