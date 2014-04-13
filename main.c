@@ -3,6 +3,7 @@
 #include "symtab.h"
 #include "synttree.h"
 #include "intcode.h"
+#include "vm.h"
 
 
 int errors = 0;
@@ -37,6 +38,10 @@ main(int argc,char*argv[]){
     intcode = GenIntCode(tree);
     Number(intcode,1);
     IntShow(intcode);
+    
+    VMachine *vm = newVMachine(); 
+    Read(vm);
+    Execute(vm);
 
     freeSyntTree(tree);
     freeIntCode(intcode);

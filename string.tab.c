@@ -76,6 +76,7 @@
 
 struct TreeNode* tree = NULL;
 struct SymDesc *start = NULL;
+struct SymDesc *current = NULL;
 
 
 void yyerror(char *s);
@@ -85,7 +86,7 @@ char *MakeName();
 
 
 /* Line 268 of yacc.c  */
-#line 89 "string.tab.c"
+#line 90 "string.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -137,7 +138,7 @@ typedef union YYSTYPE
 {
 
 /* Line 293 of yacc.c  */
-#line 18 "string.y"
+#line 19 "string.y"
 
     char str[256];
     SymDesc *symbol;
@@ -146,7 +147,7 @@ typedef union YYSTYPE
 
 
 /* Line 293 of yacc.c  */
-#line 150 "string.tab.c"
+#line 151 "string.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -158,7 +159,7 @@ typedef union YYSTYPE
 
 
 /* Line 343 of yacc.c  */
-#line 162 "string.tab.c"
+#line 163 "string.tab.c"
 
 #ifdef short
 # undef short
@@ -454,9 +455,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    41,    41,    45,    46,    49,    50,    51,    52,    53,
-      54,    55,    60,    67,    68,    72,    76,    81,    82,    86,
-      87,    91,    92,    96,    97,    98,   101,   112
+       0,    42,    42,    46,    47,    50,    51,    52,    53,    54,
+      55,    56,    61,    68,    69,    73,    77,    82,    83,    87,
+      88,    92,    93,    97,    98,    99,   102,   113
 };
 #endif
 
@@ -1414,77 +1415,77 @@ yyreduce:
         case 2:
 
 /* Line 1806 of yacc.c  */
-#line 41 "string.y"
+#line 42 "string.y"
     { tree=(yyvsp[(1) - (1)].tnode); }
     break;
 
   case 3:
 
 /* Line 1806 of yacc.c  */
-#line 45 "string.y"
+#line 46 "string.y"
     { (yyval.tnode) = newNode(STMT_LIST,(yyvsp[(1) - (2)].tnode),(yyvsp[(2) - (2)].tnode),NULL); }
     break;
 
   case 4:
 
 /* Line 1806 of yacc.c  */
-#line 46 "string.y"
+#line 47 "string.y"
     { (yyval.tnode) = newNode(EMPTY_STMT,NULL,NULL,NULL); }
     break;
 
   case 5:
 
 /* Line 1806 of yacc.c  */
-#line 49 "string.y"
+#line 50 "string.y"
     { (yyval.tnode)=newNode(EMPTY_STMT,NULL,NULL,NULL); }
     break;
 
   case 6:
 
 /* Line 1806 of yacc.c  */
-#line 50 "string.y"
+#line 51 "string.y"
     { (yyval.tnode)=newNode(EXPR_STMT,(yyvsp[(1) - (2)].tnode),NULL,NULL);}
     break;
 
   case 7:
 
 /* Line 1806 of yacc.c  */
-#line 51 "string.y"
+#line 52 "string.y"
     {  (yyval.tnode)=newNode(PRINT_STMT,(yyvsp[(2) - (3)].tnode),NULL,NULL);}
     break;
 
   case 8:
 
 /* Line 1806 of yacc.c  */
-#line 52 "string.y"
+#line 53 "string.y"
     {  (yyval.tnode)=newNode(INPUT_STMT,NULL,NULL,NULL);(yyval.tnode)->symbol=(yyvsp[(2) - (3)].symbol);}
     break;
 
   case 9:
 
 /* Line 1806 of yacc.c  */
-#line 53 "string.y"
+#line 54 "string.y"
     { (yyval.tnode)=(yyvsp[(1) - (1)].tnode);}
     break;
 
   case 10:
 
 /* Line 1806 of yacc.c  */
-#line 54 "string.y"
+#line 55 "string.y"
     { (yyval.tnode) = (yyvsp[(1) - (1)].tnode); }
     break;
 
   case 11:
 
 /* Line 1806 of yacc.c  */
-#line 55 "string.y"
+#line 56 "string.y"
     { (yyval.tnode)=newNode(ERROR_STMT,NULL,NULL,NULL);}
     break;
 
   case 12:
 
 /* Line 1806 of yacc.c  */
-#line 61 "string.y"
+#line 62 "string.y"
     {
 	    (yyval.tnode) = newNode ((yyvsp[(6) - (6)].tnode)? IFTHENELSE_STMT : IFTHEN_STMT,(yyvsp[(3) - (6)].tnode),(yyvsp[(5) - (6)].tnode),(yyvsp[(6) - (6)].tnode));
 	}
@@ -1493,98 +1494,98 @@ yyreduce:
   case 13:
 
 /* Line 1806 of yacc.c  */
-#line 67 "string.y"
+#line 68 "string.y"
     {(yyval.tnode)=(yyvsp[(2) - (2)].tnode);}
     break;
 
   case 14:
 
 /* Line 1806 of yacc.c  */
-#line 68 "string.y"
+#line 69 "string.y"
     {(yyval.tnode)=NULL;}
     break;
 
   case 15:
 
 /* Line 1806 of yacc.c  */
-#line 72 "string.y"
+#line 73 "string.y"
     {(yyval.tnode)=(yyvsp[(2) - (3)].tnode);}
     break;
 
   case 16:
 
 /* Line 1806 of yacc.c  */
-#line 76 "string.y"
+#line 77 "string.y"
     { (yyval.tnode)=(yyvsp[(1) - (1)].tnode);}
     break;
 
   case 17:
 
 /* Line 1806 of yacc.c  */
-#line 81 "string.y"
+#line 82 "string.y"
     { (yyval.tnode) = newNode(EQUAL_EXPR,(yyvsp[(1) - (3)].tnode),(yyvsp[(3) - (3)].tnode),NULL);}
     break;
 
   case 18:
 
 /* Line 1806 of yacc.c  */
-#line 82 "string.y"
+#line 83 "string.y"
     { (yyval.tnode)=(yyvsp[(1) - (1)].tnode);}
     break;
 
   case 19:
 
 /* Line 1806 of yacc.c  */
-#line 86 "string.y"
+#line 87 "string.y"
     {(yyval.tnode) = newNode(ASSIGN_EXPR,(yyvsp[(3) - (3)].tnode),NULL,NULL); (yyval.tnode)->symbol = (yyvsp[(1) - (3)].symbol);}
     break;
 
   case 20:
 
 /* Line 1806 of yacc.c  */
-#line 87 "string.y"
+#line 88 "string.y"
     {(yyval.tnode)=(yyvsp[(1) - (1)].tnode);}
     break;
 
   case 21:
 
 /* Line 1806 of yacc.c  */
-#line 91 "string.y"
+#line 92 "string.y"
     { (yyval.tnode)=newNode(CONCAT_EXPR,(yyvsp[(1) - (3)].tnode),(yyvsp[(3) - (3)].tnode),NULL); }
     break;
 
   case 22:
 
 /* Line 1806 of yacc.c  */
-#line 92 "string.y"
+#line 93 "string.y"
     { (yyval.tnode)=(yyvsp[(1) - (1)].tnode); }
     break;
 
   case 23:
 
 /* Line 1806 of yacc.c  */
-#line 96 "string.y"
+#line 97 "string.y"
     {(yyval.tnode)=newNode(IDENT_EXPR,NULL,NULL,NULL); (yyval.tnode)->symbol=(yyvsp[(1) - (1)].symbol);}
     break;
 
   case 24:
 
 /* Line 1806 of yacc.c  */
-#line 97 "string.y"
+#line 98 "string.y"
     {(yyval.tnode)=newNode(STR_EXPR,NULL,NULL,NULL); (yyval.tnode)->symbol=(yyvsp[(1) - (1)].symbol);}
     break;
 
   case 25:
 
 /* Line 1806 of yacc.c  */
-#line 98 "string.y"
+#line 99 "string.y"
     {(yyval.tnode)=(yyvsp[(2) - (3)].tnode);}
     break;
 
   case 26:
 
 /* Line 1806 of yacc.c  */
-#line 102 "string.y"
+#line 103 "string.y"
     {
 	    (yyval.symbol) = Find(start,(yyvsp[(1) - (1)].str));
 	    if ((yyval.symbol) ==NULL) {
@@ -1597,7 +1598,7 @@ yyreduce:
   case 27:
 
 /* Line 1806 of yacc.c  */
-#line 113 "string.y"
+#line 114 "string.y"
     {
 	    (yyval.symbol) = newSymDesc(MakeName(),STR_CONST,(yyvsp[(1) - (1)].str),lineno);	
 	    Add(start,(yyval.symbol));
@@ -1607,7 +1608,7 @@ yyreduce:
 
 
 /* Line 1806 of yacc.c  */
-#line 1611 "string.tab.c"
+#line 1612 "string.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1838,7 +1839,7 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 118 "string.y"
+#line 119 "string.y"
 
 
 char *MakeName() {

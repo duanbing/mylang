@@ -62,7 +62,7 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 18 "string.y"
+#line 19 "string.y"
 
     char str[256];
     SymDesc *symbol;

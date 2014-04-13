@@ -4,6 +4,15 @@
 #include "symtab.h"
 #include "intcode.h"
 
+int Len(IntInstr *s) {
+    int n = 0;
+    IntInstr *t = s->next;
+    while(t) {
+        t=t->next;
+	++n;
+    }
+    return n;
+}
 struct IntInstr* newIntInstr(Opcode opcode,SymDesc *str,struct IntInstr* target){
     struct IntInstr *n = (struct IntInstr*)malloc(sizeof(struct IntInstr));
     n->opcode = opcode;

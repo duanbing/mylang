@@ -7,6 +7,7 @@
 
 struct TreeNode* tree = NULL;
 struct SymDesc *start = NULL;
+struct SymDesc *current = NULL;
 
 
 void yyerror(char *s);

@@ -14,6 +14,8 @@ typedef struct SymDesc{
     SymType type;
     int line;
     struct SymDesc *next;
+   
+    int idx;
 }SymDesc;
 
 struct SymDesc* newSymDesc(char *name,SymType type,char *cont,int line);
@@ -24,4 +26,5 @@ void SymbShow(struct SymDesc *start);
 
 int Add (struct SymDesc *start,struct SymDesc *s);
 struct SymDesc *Find(struct SymDesc *start,char*name);
+
 #endif

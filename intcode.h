@@ -27,6 +27,7 @@ typedef struct IntInstr {
 struct IntInstr* newIntInstr(Opcode opcode,SymDesc *str,struct IntInstr* target);
 
 struct IntInstr *GenIntCode(struct TreeNode* tree);
+int Len(IntInstr*);
 
 void Number(struct IntInstr *num,int);
 void IntShow(struct IntInstr *);
