@@ -5,7 +5,7 @@
 #include "intcode.h"
 
 int Len(IntInstr *s) {
-    int n = 0;
+    int n = 1;
     IntInstr *t = s->next;
     while(t) {
         t=t->next;

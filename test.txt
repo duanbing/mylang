@@ -5,5 +5,7 @@ if (name == "Jan") { // string comparison
 name = "my creator"; // string assignment
 happy = "yes";
 }
+name = "Jan";
+print name;
 print "Thank you, " + name + "!\n" + (name == "Jan") + // string concatenation
 "You've just made a simple program very happy!";

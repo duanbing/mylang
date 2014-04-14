@@ -33,4 +33,5 @@ void Number(struct IntInstr *num,int);
 void IntShow(struct IntInstr *);
 
 void freeIntCode(struct IntInstr*);
+extern char* op_name[];
 #endif 

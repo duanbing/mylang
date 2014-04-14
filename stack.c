@@ -7,7 +7,8 @@ Stack* newStack(){
     return s;
 }
 
-void Push(Stack* stack,T node) {
+void Push(Stack** st,T node) {
+    Stack* stack = *st;
     ll_link *t = (ll_link*)malloc(sizeof(ll_link));
     t->data = node;
     t->next = stack->llstart ;
@@ -26,7 +27,8 @@ T GetNo(Stack* stack,int e) {
     return link->data;
 }
 
-T Pop(Stack* stack) {
+T Pop(Stack** st) {
+    Stack* stack = *st;
     T rv;
     ll_link *link;
     link = stack->llstart;
@@ -53,7 +55,8 @@ void DoForAll(Stack* stack,void(*process)(T)) {
     }
 }
 
-void Empty(Stack* stack) {
+void Empty(Stack** st) {
+    Stack* stack = *st;
     ll_link* s = stack->llstart,*del;
     while(s) {
 	del = s;
@@ -64,4 +67,13 @@ void Empty(Stack* stack) {
     stack->n = 0;
 }
 
+void ShowStack(Stack *stack){
+    ll_link* s = stack->llstart;
+    printf("|| ");
+    while(s) {
+	printf("%d ",s->data);
+        s = s -> next;
+    }
 
+    puts("||");
+}

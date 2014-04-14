@@ -28,7 +28,7 @@ void Reset(VMachine* vm) {
 	if(vm->instr) { 
       	    free(vm->instr); vm->instr = NULL; vm->ninstr = 0;
 	}
-        Empty(vm->stack);
+        Empty(&(vm->stack));
     }
 }
 
@@ -80,13 +80,13 @@ int getFreeStr(VMachine* vm) {
 }
 int newTmpCopyI(VMachine* vm , int j) {
     int i = getFreeStr(vm);
-    if (i >= 0) Assign(vm->str[i],vm->str[j]->s); 
+    if (i >= 0) Assign(&(vm->str[i]),vm->str[j]->s); 
     return i;
 }
 
 int newTmpCopyS(VMachine*vm,char *s) {
     int i = getFreeStr(vm);
-    if(i>=0) Assign(vm->str[i],s);
+    if(i>=0) Assign(&(vm->str[i]),s);
     return i;
 }
 
@@ -101,35 +101,35 @@ void Execute(VMachine *vm) {
     VM_Stack* stack = newStack();
     int ipc;
     int i,j,k;
-
     ip=0;
     while(ip < vm->ninstr) {
 	ipc = 1;
      	switch (vm->instr[ip].opcode) {
 	    case OP_NOP:	break;
-	    case OP_PUSH :  Push(stack,newTmpCopyI(vm,vm->instr[ip].operand)); break;
-	    case OP_GETTOP : Assign(vm->str[vm->instr[ip].operand],vm->str[stack->llstart->data]->s); break;
-	    case OP_DISCARD : delTmp(vm,Pop(stack)); break;
-	    case OP_PRINT : i = Pop(stack); Print(vm->str[i]); delTmp(vm,i); break;
-	    case OP_INPUT : Input(vm->str[vm->instr[ip].operand]); break;
+	    case OP_PUSH :  Push(&stack,newTmpCopyI(vm,vm->instr[ip].operand)); break;
+	    case OP_GETTOP : Assign(&(vm->str[vm->instr[ip].operand]),vm->str[stack->llstart->data]->s); break;
+	    case OP_DISCARD : delTmp(vm,Pop(&stack)); break;
+	    case OP_PRINT : i = Pop(&stack); Print(vm->str[i]); delTmp(vm,i); break;
+	    case OP_INPUT : Input(&(vm->str[vm->instr[ip].operand])); break;
 	    case OP_JMP : ipc = vm->instr[ip].operand; break;
-	    case OP_JMPF : i = Pop(stack); if (i == ST_FALSE) ipc = vm->instr[ip].operand; break;
-	    case OP_STR_EQUAL : i = Pop(stack); j = Pop(stack);
+	    case OP_JMPF : i = Pop(&stack); if (i == ST_FALSE) ipc = vm->instr[ip].operand; break;
+	    case OP_STR_EQUAL : i = Pop(&stack); j = Pop(&stack);
 		 if(strcmp(vm->str[i]->s,vm->str[j]->s) == 0) 
 			k = ST_TRUE;  
 		 else k = ST_FALSE ;
-		 delTmp(vm,i);delTmp(vm,j); Push(stack,k); break;
-	    case OP_BOOL_EQUAL : i = Pop(stack); j = Pop(stack);
+		 delTmp(vm,i);delTmp(vm,j); Push(&stack,k); break;
+	    case OP_BOOL_EQUAL : i = Pop(&stack); j = Pop(&stack);
 		if (i == j) k = ST_TRUE ;  else k = ST_FALSE;
-	        Push(stack,k); break;
- 	    case OP_BOOL2STR : i = Pop(stack);
+	        Push(&stack,k); break;
+ 	    case OP_BOOL2STR : i = Pop(&stack);
 		if (i == ST_FALSE) i = newTmpCopyS(vm,"false");
 		else i = newTmpCopyS(vm,"true");
-		Push(stack,i);
+		Push(&stack,i);
 		break;
-	    case OP_CONCAT : i = Pop(stack); j = Pop(stack);	
+	    case OP_CONCAT : i = Pop(&stack); j = Pop(&stack);	
 		k = newTmpCopyI(vm,j); Concat(vm->str[k],vm->str[i]);
-		delTmp(vm,i);delTmp(vm,j); Push(stack,k); break;
+		delTmp(vm,i);delTmp(vm,j); Push(&stack,k);
+		break;
    	}
         ip += ipc;
     }

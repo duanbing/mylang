@@ -9,7 +9,7 @@ typedef struct Str {
     int len;
 }Str;
 
-void Assign(Str* d,char *src) ;
+void Assign(Str** d,char *src) ;
 
 
 Str* newStr(char *s) ;
@@ -18,7 +18,7 @@ Str* newStr2() ;
 
 void freeStr(Str* s) ;
 
-Str* Input () ;
+void Input (Str**s) ;
 
 Str* Concat (Str* dst,Str* src) ;
 

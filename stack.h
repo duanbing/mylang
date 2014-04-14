@@ -18,16 +18,17 @@ typedef struct Stack {
 
 Stack* newStack();
 
-void Push(Stack* stack,T node) ; 
+void Push(Stack** stack,T node) ; 
 
 T GetNo(Stack* stack,int e);
 
-T Pop(Stack* stack) ;
+T Pop(Stack** stack) ;
 
 void DoForAllArg (Stack *stack, void (*process)(T,void*),void *arg) ;
 
 void DoForAll(Stack* stack,void(*process)(T)) ;
 
-void Empty(Stack* stack) ;
+void Empty(Stack** stack) ;
+void ShowStack(Stack*stack);
 
 #endif

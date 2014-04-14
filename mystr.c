@@ -1,6 +1,7 @@
 #include "mystr.h" 
 
-void Assign(Str* d,char *src) {
+void Assign(Str** dd,char *src) {
+   Str *d = *dd;
    char *dst = d->s;
    int ld = strlen(dst);
    int ls = strlen(src);
@@ -11,6 +12,7 @@ void Assign(Str* d,char *src) {
         strncpy(dst,src,ls);
         d->s = dst;
    }
+   d->s[ls]  = 0;
    d->len = ls;
 }
 
@@ -41,10 +43,10 @@ void freeStr(Str* s) {
    s=NULL;
 }
 
-Str* Input () {
+void Input (Str** str) {
     char s[81];
     gets(s);
-    return newStr(s);
+    *str = newStr(s);
 }
 
 Str* Concat (Str* dst,Str* src) {
@@ -52,5 +54,6 @@ Str* Concat (Str* dst,Str* src) {
     dst->s = realloc(dst->s,l);
     strcpy(dst->s + dst->len,src->s);
     dst->len = l;
+    dst->s[l] = 0;
     return dst;
 }

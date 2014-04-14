@@ -1,1 +1,7 @@
-if (a==b) a; else b;
+
+input name;
+if(name == "nihao"){
+    name = "Jan";
+}
+
+print "yes" + name ;
