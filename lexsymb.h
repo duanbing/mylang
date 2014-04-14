@@ -1,5 +1,5 @@
 typedef union {
-    char str[256];
+    char *str;
 }YYSTYPE;
 
 extern YYSTYPE yylval;

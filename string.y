@@ -6,8 +6,7 @@
 #include "synttree.h"
 
 struct TreeNode* tree = NULL;
-struct SymDesc *start = NULL;
-struct SymDesc *current = NULL;
+struct SymDesc* start = NULL;
 
 
 void yyerror(char *s);
@@ -17,7 +16,7 @@ char *MakeName();
 %}
 
 %union {
-    char str[256];
+    char* str;
     SymDesc *symbol;
     struct TreeNode *tnode;
 };
@@ -101,10 +100,10 @@ simple_expression :
 identifier :
 	ID 
 	{
-	    $$ = Find(start,$1);
+	    $$ = Find(start,yylval.str);
 	    if ($$ ==NULL) {
-	    	$$=newSymDesc($1,STR_VAR,NULL,lineno);
-		Add(start,$$);
+	    	$$=newSymDesc(yylval.str,STR_VAR,NULL,lineno);
+		Add(&start,$$);
 	    }
 	}
 	;
@@ -112,8 +111,8 @@ identifier :
 string :
 	STRING 
 	{
-	    $$ = newSymDesc(MakeName(),STR_CONST,$1,lineno);	
-	    Add(start,$$);
+	    $$ = newSymDesc(MakeName(),STR_CONST,yylval.str,lineno);	
+	    Add(&start,$$);
 	}
 
 %%

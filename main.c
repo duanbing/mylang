@@ -17,8 +17,7 @@ int yywrap() {
 }
 
 extern struct TreeNode* tree;
-extern struct SymDesc *start;
-
+extern struct SymDesc* start;
 struct IntInstr *intcode;
 
 main(int argc,char*argv[]){
@@ -28,19 +27,17 @@ main(int argc,char*argv[]){
     }
     if (yyin == NULL)  yyin = stdin;
 
-    printf("begin to parse\n");
     yyparse();
     printf("%d error(s) found\n",errors);
 
 	
-   // SymbShow(start);
-   // SyntShow(tree,0);
+ //   SymbShow(start);
+//    SyntShow(tree,0);
     intcode = GenIntCode(tree);
     Number(intcode,1);
-    IntShow(intcode);
-    
+//    IntShow(intcode);
     VMachine *vm = newVMachine(); 
-    Read(vm);
+    Read(&vm);
     Execute(vm);
 
     freeSyntTree(tree);

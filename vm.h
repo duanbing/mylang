@@ -12,12 +12,7 @@ typedef struct Instr {
     int operand;
 }Instr;
 
-Instr newInstr(Opcode opcode,int operand) {
-    Instr n; 
-    n.opcode=opcode;
-    n.operand=operand;
-    return n;
-}
+Instr newInstr(Opcode opcode,int operand);
 
 typedef Stack VM_Stack;
 
@@ -32,15 +27,10 @@ typedef struct VMachine {
     VM_Stack* stack;
 }VMachine;
 
-VMachine* newVMachine() {
-    VMachine* s = (VMachine*) malloc(sizeof(VMachine));
-    s->instr = NULL;
-    s->ninstr = 0;
-    s->stack = NULL; 
-    return s;
-}
+VMachine* newVMachine();
 
-void Read(VMachine*);
+void Reset(VMachine*);
+void Read(VMachine**);
 void Execute(VMachine*);
 
 #endif

@@ -2,6 +2,21 @@
 #include "vm.h"
 #include "symtab.h"
 
+Instr newInstr(Opcode opcode,int operand) {
+    Instr n;
+    n.opcode=opcode;
+    n.operand=operand;
+    return n;
+}
+
+VMachine* newVMachine() {
+    VMachine* s = (VMachine*) malloc(sizeof(VMachine));
+    s->instr = NULL;
+    s->ninstr = 0;
+    s->stack = NULL;
+    return s;
+}
+
 void Reset(VMachine* vm) {
     int i=0;
     for (; i<MAX_STR;i++) {
@@ -18,22 +33,22 @@ void Reset(VMachine* vm) {
 }
 
 extern SymDesc* start;
-extern SymDesc* current;
 extern IntInstr* intcode;
 
-void Read(VMachine* vm) {
+void Read(VMachine** pvm) {
+    VMachine*vm = *pvm;
     int i=0;
-    current = start;
-    SymDesc *s = current;
+    SymDesc* s= start;
     while(s) {
 	if (s->cont) vm->str[i] = newStr(s->cont);
         else vm->str[i] = newStr2();
         s->idx = i ++;
-        s = (current = current->next); 
+        s = s->next; 
     }
     vm->ninstr = Len(intcode);
     vm->instr = (Instr*)malloc(vm->ninstr * sizeof(Instr));
     IntInstr *cinstr = intcode;
+
     for (i=0;i<vm->ninstr;i++) {
 	switch (cinstr->opcode) {
 	case OP_NOP : vm->instr[i] = newInstr(OP_NOP,0); break;
@@ -43,7 +58,7 @@ void Read(VMachine* vm) {
 	case OP_PRINT : vm->instr[i] = newInstr(OP_PRINT,0); break;
 	case OP_INPUT : vm->instr[i] = newInstr(OP_INPUT,cinstr->str->idx); break;
 	case OP_JMP : vm->instr[i] = newInstr(OP_JMP,cinstr->target->n - i); break;
-	case OP_JMPF : vm->instr[i] = newInstr(OP_JMPF,cinstr->target->n - i); break;
+	case OP_JMPF : vm->instr[i] = newInstr(OP_JMPF,cinstr->target->n - i);  break;
 	case OP_STR_EQUAL : vm->instr[i] = newInstr(OP_STR_EQUAL,0);break;
 	case OP_BOOL_EQUAL : vm->instr[i] = newInstr(OP_BOOL_EQUAL,0);break;
 	case OP_CONCAT :  vm->instr[i] = newInstr(OP_CONCAT,0); break;
@@ -113,7 +128,7 @@ void Execute(VMachine *vm) {
 		Push(stack,i);
 		break;
 	    case OP_CONCAT : i = Pop(stack); j = Pop(stack);	
-		k = newTmpCopyI(vm,j); Concatenate(vm->str[k],vm->str[i]);
+		k = newTmpCopyI(vm,j); Concat(vm->str[k],vm->str[i]);
 		delTmp(vm,i);delTmp(vm,j); Push(stack,k); break;
    	}
         ip += ipc;

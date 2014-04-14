@@ -5,11 +5,13 @@
 
 
 struct SymDesc* newSymDesc(char *name,SymType type,char *cont,int line) {
-    printf("name : [%s] [%s]\n",name,cont? cont:"");
     struct SymDesc *ret = (struct SymDesc*) malloc(sizeof(struct SymDesc)) ;
+/*
     strcpy(ret->name,name);  ret->type = type;
     if (cont)  strcpy(ret->cont,cont);  
-    ret->line= line;
+*/
+    ret->name = name;  ret->cont = cont;
+    ret->line= line;  ret->type = type;
     ret->next=NULL;
     return ret;
 }
@@ -23,16 +25,17 @@ void show(struct SymDesc *s) {
     }
 }
 
-int Add(struct SymDesc *start,struct SymDesc *symb) {
-    if(Find(start,symb->name)!=NULL) {
+int Add(struct SymDesc** start,struct SymDesc *symb) {
+    
+    if(Find(*start,symb->name)!=NULL) {
 	return -1;
     }
 
-    if (start == NULL) {
-	start = symb;
+    if (*start == NULL) {
+	*start = symb;
     }
     else {
-	struct SymDesc *s = start;
+	struct SymDesc *s = *start;
         while(s->next) {
            s=s->next; 
 	}
@@ -41,8 +44,7 @@ int Add(struct SymDesc *start,struct SymDesc *symb) {
     return 0;
 }
 
-struct SymDesc* Find(struct SymDesc *start,char *name) {
-    struct SymDesc *s=start;
+struct SymDesc* Find(struct SymDesc* s,char *name) {
     while(s && strcmp(name,s->name)) {
     	s=s->next;
     }

@@ -54,12 +54,14 @@ void EatComment() {
 }
 
 void Identifier() {
+    yylval.str = (char*)malloc(strlen(yytext)+1);
     strcpy(yylval.str,yytext);
     yylval.str[strlen(yytext)] = 0;
 }
 
 void StringConstant() {
     int l = strlen(yytext) - 2;
+    yylval.str = (char*)malloc(l+1);
     strncpy(yylval.str,&yytext[1],l);
     yylval.str[l] = 0;
 }

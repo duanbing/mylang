@@ -9,8 +9,8 @@ typedef enum {
 }SymType;
 
 typedef struct SymDesc{
-    char name[256];
-    char cont[256];
+    char* name;
+    char* cont;
     SymType type;
     int line;
     struct SymDesc *next;
@@ -18,13 +18,14 @@ typedef struct SymDesc{
     int idx;
 }SymDesc;
 
+
 struct SymDesc* newSymDesc(char *name,SymType type,char *cont,int line);
 void show(struct SymDesc *s) ;
 void SymbShow(struct SymDesc *start);
 
 
 
-int Add (struct SymDesc *start,struct SymDesc *s);
-struct SymDesc *Find(struct SymDesc *start,char*name);
+int Add (struct SymDesc** st,struct SymDesc *s);
+struct SymDesc *Find(struct SymDesc* st,char*name);
 
 #endif

@@ -1,17 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 //#include "mystr.h"
 //#include "stack.h"
 
-int p (int a) {
+char *s = NULL;
+char *news () {
 
+   char*a = (char*)malloc(10);
+   strcpy(a,"111");
+   return a;
 }
 
-int p (char  *s) {
-
+void ass(char **s,char *s2) {
+    *s = s2;
 }
 
 int main() {
-  p(1);
+   char *s = news();
+   char *s2 = NULL;  ass(&s2,s);
+   printf("%s\n",s2);
 /*
    Str *i = Input();
    Str *o = newStr("xxxxxxxxxxxxxxx");

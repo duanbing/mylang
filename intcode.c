@@ -97,6 +97,8 @@ struct IntInstr* GenIntCode (struct TreeNode* tree) {
         jump2end = newIntInstr(OP_JMPF,NULL,NULL); 
         thenpart = GenIntCode(root->child[1]);
         endif = newIntInstr(JUMPTARGET,NULL,jump2end);
+	jump2end->target = endif;	
+
         Concatenate (cond, jump2end);
 	Concatenate (jump2end, thenpart);
 	Concatenate (thenpart, endif);
