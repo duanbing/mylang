@@ -1,21 +1,31 @@
 # 一个简单的脚本引擎
 
-## 词法分析器
+## 使用
+
+### build
+<pre>
+   git clone https://github.com/duanbing/mylang.git
+   cd mylang
+   make
+</pre>
+
+###run
+<pre>
+./lang test.txt
+</pre>
+
+##源码说明
+
+### 词法分析器
 `symtab.c`
 
-## 语法分析器
+### 语法分析器
 `synntree.c`
 
-## 中间代码生成
+### 中间代码生成
 `intcode.c`
 <pre>
 ./lang test.txt2 
-begin to parse
-name : [a] []
-name : [b] []
-name : [a] []
-name : [b] []
-0 error(s) found
  1: OP_NOP 
  2: OP_PUSH a 
  3: OP_PUSH b 
@@ -31,9 +41,9 @@ name : [b] []
 
 </pre>
 
-## 虚拟机
-
-## 可执行代码
+### 虚拟机
+vm.c
+mystr和stack是一个简单的辅助类
 
 
 
